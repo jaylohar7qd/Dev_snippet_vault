@@ -1,5 +1,4 @@
-.env*
-!.env.example
+.env
 *.pem
 *.key
 node_modules/

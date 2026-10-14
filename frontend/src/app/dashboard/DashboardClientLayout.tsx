@@ -11,6 +11,7 @@ import {
   DashboardUserProvider,
   type DashboardUser,
 } from '@/lib/dashboard-user';
+import { getApiUrl } from '@/lib/api-url';
 
 export default function DashboardClientLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -30,7 +31,7 @@ const [authError, setAuthError] = useState('');
         return;
       }
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const apiUrl = getApiUrl();
 
       if (!apiUrl) {
         throw new Error('Backend URL is missing. Restart the frontend.');

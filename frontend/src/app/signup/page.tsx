@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Eye, EyeOff, ArrowRight, Lock, Mail, User, Code2, Sparkles, Check } from 'lucide-react';
+import { getApiUrl } from '@/lib/api-url';
 
 export default function SignupPage() {
   const router = useRouter();
@@ -36,7 +37,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   setIsLoading(true);
 
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiUrl = getApiUrl();
 
     if (!apiUrl) {
       setErrorMessage('Backend URL is missing. Restart the frontend.');

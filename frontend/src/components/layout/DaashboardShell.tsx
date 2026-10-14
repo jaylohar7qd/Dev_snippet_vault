@@ -7,6 +7,7 @@ import { SearchCommand } from '@/components/ui/SearchCommand';
 import { Toast } from '@/components/ui/Toast';
 import { useState, useEffect, Suspense } from 'react';
 import { useRouter } from 'next/navigation';
+import { getApiUrl } from '@/lib/api-url';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -30,7 +31,7 @@ const [authError, setAuthError] = useState('');
         return;
       }
 
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const apiUrl = getApiUrl();
 
       if (!apiUrl) {
         throw new Error('Backend URL is missing. Restart the frontend.');

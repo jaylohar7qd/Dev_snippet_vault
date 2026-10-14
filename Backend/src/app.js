@@ -5,7 +5,7 @@ const createRateLimiter = require('./middleware/rate-limit');
 const app = express();
 const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:3000')
   .split(',')
-  .map((origin) => origin.trim())
+  .map((origin) => origin.trim().replace(/\/+$/, ''))
   .filter(Boolean);
 
 app.use(

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Navbar } from '@/components/layout/Navbar';
 import { Eye, EyeOff, ArrowRight, Lock, Mail, Code2, Sparkles } from 'lucide-react';
+import { getApiUrl } from '@/lib/api-url';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -20,7 +21,7 @@ export default function LoginPage() {
   setIsLoading(true);
 
   try {
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+    const apiUrl = getApiUrl();
 
     if (!apiUrl) {
       setError('Backend URL is missing. Restart the frontend.');

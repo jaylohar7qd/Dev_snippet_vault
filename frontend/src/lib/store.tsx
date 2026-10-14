@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect, useCallback, ReactNode 
 import { Snippet, Collection, CreateSnippetInput, DashboardStats, SnippetFilters, SortOption } from '@/lib/types';
 import { computeStats } from '@/lib/stats';
 import { useDashboardUser } from '@/lib/dashboard-user';
+import { getApiUrl as getConfiguredApiUrl } from '@/lib/api-url';
 
 interface SnippetStoreContextType {
   // Snippets
@@ -108,11 +109,11 @@ function normalizeCollection(payload: Partial<Collection> | null | undefined): C
 }
 
 function getApiUrl() {
-  const configuredUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (!configuredUrl) {
+  const apiUrl = getConfiguredApiUrl();
+  if (!apiUrl) {
     throw new Error('Backend URL is missing. Restart the frontend.');
   }
-  return configuredUrl.replace(/\/$/, '');
+  return apiUrl;
 }
 
 async function apiRequest<T>(path: string, options: RequestInit = {}, requireAuth = true): Promise<T> {
